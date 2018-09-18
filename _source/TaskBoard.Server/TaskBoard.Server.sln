@@ -1,8 +1,11 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskBoard.Server", "TaskBoard.Server\TaskBoard.Server.csproj", "{990609A2-07DA-499A-A0D7-16F222E33002}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskBoard.Server.Database", "TaskBoard.Server.Database\TaskBoard.Server.Database.csproj", "{8482AAAE-9DB5-4C64-8E95-DFDED2FD2B8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,6 +17,10 @@ Global
 		{990609A2-07DA-499A-A0D7-16F222E33002}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{990609A2-07DA-499A-A0D7-16F222E33002}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{990609A2-07DA-499A-A0D7-16F222E33002}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8482AAAE-9DB5-4C64-8E95-DFDED2FD2B8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8482AAAE-9DB5-4C64-8E95-DFDED2FD2B8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8482AAAE-9DB5-4C64-8E95-DFDED2FD2B8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8482AAAE-9DB5-4C64-8E95-DFDED2FD2B8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
