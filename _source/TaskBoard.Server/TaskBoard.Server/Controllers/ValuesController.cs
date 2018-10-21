@@ -1,34 +1,47 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using TaskBoard.Server.Database.Entities;
+using TaskBoard.Server.Database.Models;
 
 namespace TaskBoard.Server.Controllers {
-	[Route("api/[controller]"), ApiController]
+	[Route("api/values"), ApiController]
 	public class ValuesController : ControllerBase {
-		// GET api/values
 		[HttpGet]
-		public ActionResult<IEnumerable<string>> Get() {
-			return new[] { "value1", "value2" };
+		public ActionResult<IEnumerable<UserEntity>> Get() {
+			using (var modelDatabase = new ModelDatabase())
+				return modelDatabase.Users.ToArray();
 		}
-
-		// GET api/values/5
+		
 		[HttpGet("{id}")]
-		public ActionResult<string> Get(int id) {
-			return "value";
+		public ActionResult<UserEntity> Get(Guid id) {
+			using (var modelDatabase = new ModelDatabase())
+				return modelDatabase.Users.FirstOrDefault(user => user.Id == id);
 		}
-
-		// POST api/values
+		
 		[HttpPost]
-		public void Post([FromBody] string value) {
+		public void Post([FromBody] UserEntity value) {
+			using (var modelDatabase = new ModelDatabase()) {
+				modelDatabase.Users.Add(value);
+				modelDatabase.SaveChanges();
+			}
 		}
-
-		// PUT api/values/5
+		
 		[HttpPut("{id}")]
-		public void Put(int id, [FromBody] string value) {
+		public void Put(int id, [FromBody] UserEntity value) {
 		}
-
-		// DELETE api/values/5
+		
 		[HttpDelete("{id}")]
-		public void Delete(int id) {
+		public void Delete(Guid id) {
+			using (var modelDatabase = new ModelDatabase()) {
+				var deletedUser = modelDatabase.Users.FirstOrDefault(user => user.Id == id);
+				if (deletedUser == null)
+					return;
+
+				modelDatabase.Users.Remove(deletedUser);
+				modelDatabase.SaveChanges();
+			}
 		}
 	}
 }
